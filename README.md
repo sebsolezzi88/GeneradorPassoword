@@ -1,4 +1,4 @@
-# TODO App SQLite en C# 🔑
+# Generador de contraseñas en C# 🔑
 
 Una pequeña aplicación de consola en C# que permite generar contraseñas usando **números**, **letras mayúsculas**, **letras minúsculas** y **simbolos**
 
