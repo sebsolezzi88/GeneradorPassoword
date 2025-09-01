@@ -1,5 +1,6 @@
 namespace SqliteApp
 {
+    using ClassPasswordItem;
     using Microsoft.Data.Sqlite;
     class SqliteApp
     {
@@ -40,6 +41,38 @@ namespace SqliteApp
                 Console.WriteLine(ex);
                 Console.WriteLine("Error al crear la base de base de detaos");
                 return false;
+            }
+        }
+        //Función para listar las contraseñas
+        public static List<PasswordItem> GetPasswords()
+        {
+            List<PasswordItem> passwordItems = new();
+            try
+            {
+                using SqliteConnection conn = new(connectionString);
+                conn.Open();
+                sql = "SELECT * FROM passwords;";
+                using SqliteCommand cmd = new(sql,conn);
+                //Ejecutamos la consulta y guardamos las tareas en el DataReader
+                using SqliteDataReader reader = cmd.ExecuteReader(); 
+                while (reader.Read())
+                {
+                    passwordItems.Add(new PasswordItem
+                    {
+                        Id = Convert.ToInt32(reader["id"]),
+                        Name= reader["name"].ToString()!,
+                        Pass= reader["pass"].ToString()!
+                        
+                    });
+                }
+                return passwordItems;
+
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine("Error al listar los passwords");
+                Console.WriteLine(ex);
+                return passwordItems;
             }
         }
     }
