@@ -52,17 +52,17 @@ namespace SqliteApp
                 using SqliteConnection conn = new(connectionString);
                 conn.Open();
                 sql = "SELECT * FROM passwords;";
-                using SqliteCommand cmd = new(sql,conn);
+                using SqliteCommand cmd = new(sql, conn);
                 //Ejecutamos la consulta y guardamos las tareas en el DataReader
-                using SqliteDataReader reader = cmd.ExecuteReader(); 
+                using SqliteDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     passwordItems.Add(new PasswordItem
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Name= reader["name"].ToString()!,
-                        Pass= reader["pass"].ToString()!
-                        
+                        Name = reader["name"].ToString()!,
+                        Pass = reader["pass"].ToString()!
+
                     });
                 }
                 return passwordItems;
@@ -73,6 +73,26 @@ namespace SqliteApp
                 Console.WriteLine("Error al listar los passwords");
                 Console.WriteLine(ex);
                 return passwordItems;
+            }
+        }
+        /* Función para borrar un password */
+        public static bool DeletePassword(int id)
+        {
+            try
+            {
+                using SqliteConnection conn = new(connectionString);
+                conn.Open(); //Abrir la conexion
+                sql = "DELETE FROM passwords WHERE id=@id"; //query sql
+                using SqliteCommand cmd = new(sql, conn); //Usando comando sql
+                cmd.Parameters.AddWithValue("@id", id); //Agregar parametros al comando sql
+                var rows = cmd.ExecuteNonQuery(); //Ejecutar el comando sql y obtener las filas afectadas
+                return rows > 0; //Si hay filas afectadas regresa true por q se realizó el delete
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine("Error al borrar passwords.");
+                Console.WriteLine(ex);
+                return false;
             }
         }
     }
