@@ -22,5 +22,24 @@ namespace SqliteApp
                 Console.WriteLine("Error al crear la base de base de detaos");
             }
         }
+        public static bool AddPassword(string name, string pass)
+        {
+            try
+            {
+                using SqliteConnection conn = new(connectionString);
+                conn.Open();
+                sql = "INSERT INTO passwords name, pass VALUES(@name,@pass); ";
+                using SqliteCommand cmd = new(sql, conn);
+                cmd.Parameters.AddWithValue("@name", name);
+                cmd.Parameters.AddWithValue("@pass", pass);
+                var row = cmd.ExecuteNonQuery();
+                return row > 0;
+            }
+            catch (SqliteException)
+            {
+                Console.WriteLine("Error al crear la base de base de detaos");
+                return false;
+            }
+        }
     }
 }
