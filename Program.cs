@@ -1,4 +1,5 @@
-﻿using NArreglos;
+﻿using ClassPasswordItem;
+using NArreglos;
 using SqliteApp;
 
 bool run = true;
@@ -97,7 +98,11 @@ while (run)
             }
             break;
         case "2": //Mostrar listado de passwords
-            Console.WriteLine("Mostrando passwords.");
+            var passwords = SqliteApp.SqliteApp.GetPasswords();
+            foreach (PasswordItem pass in passwords)
+            {
+                Console.WriteLine($"ID: {pass.Id} - Nombre: {pass.Name} - Contraseña: {pass.Pass}");
+            }
             break;
         case "3": //Cerrar programa
             run = false;
