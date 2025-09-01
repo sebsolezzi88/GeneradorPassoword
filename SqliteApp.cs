@@ -13,7 +13,7 @@ namespace SqliteApp
             {
                 using SqliteConnection conn = new(connectionString);
                 conn.Open();
-                sql = "CREATE TABLE IF NOT EXIST passwords (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, pass TEXT NOT NULL)";
+                sql = "CREATE TABLE IF NOT EXISTS passwords (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL UNIQUE, pass TEXT NOT NULL);";
                 using SqliteCommand cmd = new(sql, conn);
                 cmd.ExecuteNonQuery();
             }
