@@ -28,15 +28,16 @@ namespace SqliteApp
             {
                 using SqliteConnection conn = new(connectionString);
                 conn.Open();
-                sql = "INSERT INTO passwords name, pass VALUES(@name,@pass); ";
+                sql = "INSERT INTO passwords (name, pass) VALUES(@name,@pass); ";
                 using SqliteCommand cmd = new(sql, conn);
                 cmd.Parameters.AddWithValue("@name", name);
                 cmd.Parameters.AddWithValue("@pass", pass);
                 var row = cmd.ExecuteNonQuery();
                 return row > 0;
             }
-            catch (SqliteException)
+            catch (SqliteException ex)
             {
+                Console.WriteLine(ex);
                 Console.WriteLine("Error al crear la base de base de detaos");
                 return false;
             }
