@@ -1,7 +1,10 @@
 ﻿using NArreglos;
+using SqliteApp;
 
 bool run = true;
 string userInput;
+SqliteApp.SqliteApp.Init(); //Creacion de la tabla si no existe
+
 while (run)
 {
     Console.WriteLine("--- Generador de contraseñas C# ---");
@@ -50,6 +53,39 @@ while (run)
 
                 //Mostramos la contraseña en pantala
                 Console.WriteLine($"La contraseña generada: {password}");
+                Console.Write("¿Desea guardar la contraseña generada? S/N: ");
+                userInput = Console.ReadLine() ?? "N";
+                if (string.Equals(userInput.ToUpper(), "S"))
+                {
+                    bool inputEmpty = true;
+                    while (inputEmpty)
+                    {
+                        Console.Write("Ingrese un nombre para guardar la contraseña: ");
+                        string name = Console.ReadLine() ?? "";
+                        if (string.IsNullOrWhiteSpace(name))
+                        {
+                            Console.WriteLine("Debe ingresar un nombre primero.");
+                            continue;
+                        }
+                        if (name.Length > 20)
+                        {
+                            Console.WriteLine("El nombre no puede ser mayor a 20 caracteres.");
+                            continue;
+                        }
+                        inputEmpty = false; //Si pasa las validaciones para salir del while
+                        if (SqliteApp.SqliteApp.AddPassword(name, password)) //Guardamos el password
+                        {
+                            Console.WriteLine("Password guardado correctamente.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("El Password NO fue guardado.");
+                        }
+                        
+                    }
+                    
+                }
+                
             }
             catch (FormatException)
             {
