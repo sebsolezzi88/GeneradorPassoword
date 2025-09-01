@@ -29,13 +29,13 @@ while (run)
                 Console.Write("Ingrese la cantidad de números. Mínimo 1, Máximo 6: ");
                 int numberOfNumbers = Convert.ToInt32(Console.ReadLine() ?? "1");
 
-                if (numberOfMayusLetters < 0 && numberOfSymbols < 0 &&
-                numberOfMinusLetters < 0 && numberOfNumbers < 0)
+                if (numberOfMayusLetters < 0 || numberOfSymbols < 0 ||
+                numberOfMinusLetters < 0 || numberOfNumbers < 0)
                 {
                     Console.WriteLine("Error: Las cantidades no puede ser negativas.");
                 }
-                if (numberOfMayusLetters > 6 && numberOfSymbols > 6 &&
-                numberOfMinusLetters > 6 && numberOfNumbers > 6)
+                if (numberOfMayusLetters > 6 || numberOfSymbols > 6 ||
+                numberOfMinusLetters > 6 || numberOfNumbers > 6)
                 {
                     Console.WriteLine("Error: Las cantidad no puede ser mayor a 6.");
                 }
