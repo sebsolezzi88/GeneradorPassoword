@@ -8,7 +8,7 @@ SqliteApp.SqliteApp.Init(); //Creacion de la tabla si no existe
 while (run)
 {
     Console.WriteLine("--- Generador de contraseñas C# ---");
-    Console.WriteLine("Ingrese 1-Crear contraseña | 2-Salir");
+    Console.WriteLine("Ingrese -> \n | 1-Crear contraseña \n | 2-Listar contraseñas \n | 3-Salir");
     Console.Write("Opción: ");
 
     userInput = Console.ReadLine() ?? "";
@@ -96,7 +96,10 @@ while (run)
                 Console.WriteLine("Error: Formato no soportado");
             }
             break;
-        case "2": //Cerrar programa
+        case "2": //Mostrar listado de passwords
+            Console.WriteLine("Mostrando passwords.");
+            break;
+        case "3": //Cerrar programa
             run = false;
             break;
 
