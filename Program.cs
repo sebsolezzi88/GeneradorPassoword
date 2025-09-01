@@ -9,7 +9,7 @@ SqliteApp.SqliteApp.Init(); //Creacion de la tabla si no existe
 while (run)
 {
     Console.WriteLine("--- Generador de contraseñas C# ---");
-    Console.WriteLine("Ingrese -> \n | 1-Crear contraseña \n | 2-Listar contraseñas \n | 3-Salir");
+    Console.WriteLine("Ingrese -> \n | 1-Crear contraseña \n | 2-Listar contraseñas \n | 3-Eliminar contraseña \n | 4-Salir");
     Console.Write("Opción: ");
 
     userInput = Console.ReadLine() ?? "";
@@ -82,11 +82,11 @@ while (run)
                         {
                             Console.WriteLine("El Password NO fue guardado.");
                         }
-                        
+
                     }
-                    
+
                 }
-                
+
             }
             catch (FormatException)
             {
@@ -104,7 +104,30 @@ while (run)
                 Console.WriteLine($"ID: {pass.Id} - Nombre: {pass.Name} - Contraseña: {pass.Pass}");
             }
             break;
-        case "3": //Cerrar programa
+        case "3": //Eliminar contraseña
+            Console.WriteLine("---------------");
+            Console.Write("Ingrese el Id de la contraseña a borrar: ");
+            userInput = Console.ReadLine()!;
+            /* Intentamos convertir el userInput en entero si lo logra regresa
+            true más el entero en la variable id */
+            if (int.TryParse(userInput, out int id))
+            {
+                if (SqliteApp.SqliteApp.DeletePassword(id))
+                {
+                    Console.WriteLine("Contraseña borrada.");
+                }
+
+                else
+                {
+                    Console.WriteLine("No se encontró la contraseña.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("ID inválido.");
+            }
+            break;
+        case "4": //Cerrar programa
             run = false;
             break;
 
