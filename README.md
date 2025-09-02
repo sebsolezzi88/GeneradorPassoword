@@ -7,7 +7,12 @@ Incluye la funcionalidad de almacenarlas en una base de datos **SQLite** y la op
 ## 📂 Estructura del proyecto
 
 - **Program.cs**: Contiene el menú principal y la interacción con el usuario.
-- **Arreglos.cs**: Dentro se encuentra la Clase RandomData que maneja la creación de la contraseña. Con las funciones estáticas: `GetRamdonMayusLetters`, `GetRamdonMinusLetters`, `GetRamdonSymbols`,`GetRamdonNumber` y `GeneratePassword`
+- **Arreglos.cs**: Dentro se encuentra la Clase RandomData que maneja la creación de la contraseña. Con las funciones estáticas: `GetRamdonMayusLetters`, `GetRamdonMinusLetters`, `GetRamdonSymbols`,`GetRamdonNumber` y `GeneratePassword`.
+- **SqliteApp.cs**: Dentro se encuentra la clase SqliteApp con los metodos estáticos `Init`, `AddPassword`, `GetPasswords`, `DeletePassword` .
+- **ExportPassword.cs**: Dentro de encuentra la clase ExportPasswords con el metodo estático `ToPdf`. 
+- **CustomFontResolver.cs** :Contiene la clase CustomFontResolver, que implementa la interfaz `IFontResolver` de PDFsharp. 
+Su función es registrar manualmente las fuentes TrueType (.ttf) para que la librería pueda usarlas en sistemas donde no se detectan automáticamente (por ejemplo, en Linux).
+Gracias a esta clase, es posible utilizar fuentes como DejaVu Sans en la exportación de contraseñas a PDF.
 
 ---
 
