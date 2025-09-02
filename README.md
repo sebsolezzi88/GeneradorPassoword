@@ -2,6 +2,7 @@
 
 Aplicación de consola en **C#** que permite generar contraseñas utilizando números, letras mayúsculas, letras minúsculas y símbolos.
 Incluye la funcionalidad de almacenarlas en una base de datos **SQLite** y la opción de exportarlas a PDF mediante la librería **PDFsharp**.
+
 ---
 ## 📂 Estructura del proyecto
 
