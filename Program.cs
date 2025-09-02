@@ -103,6 +103,13 @@ while (run)
             {
                 Console.WriteLine($"ID: {pass.Id} - Nombre: {pass.Name} - Contraseña: {pass.Pass}");
             }
+            Console.WriteLine("¿Desea generar un PDF con las contraseñas? S/N: ");
+            userInput = Console.ReadLine()?? "N";
+            if (string.Equals(userInput, "S"))
+            {
+                ExportPasswords.ToPdf(passwords);
+                Console.WriteLine("PDF generado: Passwords.pdf");
+            }
             break;
         case "3": //Eliminar contraseña
             Console.WriteLine("---------------");

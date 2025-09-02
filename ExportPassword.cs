@@ -43,6 +43,6 @@ class ExportPasswords
         }
 
         document.Save("Passwords.pdf");
-        Console.WriteLine("PDF generado: Passwords.pdf");
+        
     }
 }
