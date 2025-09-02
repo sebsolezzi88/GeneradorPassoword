@@ -1,6 +1,7 @@
 using PdfSharp.Fonts;
 using System.IO;
 
+/* Clase para resolver los problemas de fuente al usar Linux */
 public class CustomFontResolver : IFontResolver
 {
     private static readonly byte[] DejaVu;
